@@ -2,8 +2,13 @@ class SiteController < ApplicationController
 	before_action :get_content, :get_highlights
 
   def home
-  	tf = TextPresenter.new(content: @content, highlights: @highlights)
-  	@paragraphs = tf.to_paragraphs
+  	@tf = TextPresenter.new(content: @content, highlights: @highlights)
+  	# @paragraphs = tf.to_paragraphs
+  	@highlighted = @tf.highlight_text
+  	# respond_to do |format|
+  	# 	format.html { render :text => @tf.html_content}
+  	# end
+  	@paragraph = @tf.html_content
   end
 
   private
