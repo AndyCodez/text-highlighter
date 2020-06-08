@@ -31,12 +31,12 @@ class TextPresenter
 					words = ""	
 					
 					if word_index.between?(highlight[:start], highlight[:end])
-						
-						if not tooltiptext.include?(highlight[:comment])
-							tooltiptext += highlight[:comment]
-						end							
-								
-						words += "<span class='tooltip' style='background-color: #{color}'>#{split_content[word_index]}<span class='tooltiptext'>#{tooltiptext}</span></span>"
+			
+						tooltiptext += highlight[:comment] unless tooltiptext.include?(highlight[:comment])
+			
+						words += "<span class='tooltip' style='background-color: #{color}'>
+											#{split_content[word_index]}
+											<span class='tooltiptext'>#{tooltiptext}</span></span>"
 					end
 	    
 	    		words += split_content[word_index] if words == ""

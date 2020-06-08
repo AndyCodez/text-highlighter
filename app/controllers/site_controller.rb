@@ -3,8 +3,7 @@ class SiteController < ApplicationController
 
   def home
   	@tf = TextPresenter.new(content: @content, highlights: @highlights)
-  	# @paragraphs = tf.to_paragraphs
-  	@highlighted = @tf.highlight_text
+  	@highlighted = @tf.highlight
   end
 
   private
