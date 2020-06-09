@@ -14,8 +14,7 @@ class TextPresenter
 
 		tooltiptext = ""
 
-		@highlights.each do |highlight|
-			color = "#" + Random.bytes(3).unpack1('H*')
+		color = "#" + Random.bytes(3).unpack1('H*')
 
 			paragraphs.each do |paragraph|
 				split_paragraph = paragraph.split
@@ -24,21 +23,28 @@ class TextPresenter
 				word_indices.each do |word_index|
 					words = ""	
 					
-					if word_index.between?(highlight[:start], highlight[:end])
-			
-						tooltiptext += highlight[:comment] unless tooltiptext.include?(highlight[:comment])
-			
-						words += "<span class='tooltip' style='background-color: #{color}'>
-											#{split_paragraph[word_index]}
-											<span class='tooltiptext'>#{tooltiptext}</span></span>"
-					end
-	    
-	    		words += split_paragraph[word_index] if words == ""
+					@highlights.each do |highlight|
+
+						if word_index.between?(highlight[:start], highlight[:end])
+				
+							unless tooltiptext.include?(highlight[:comment])
+								tooltiptext += highlight[:comment] 
+								color = "#" + Random.bytes(3).unpack1('H*')
+							end
+
+							words = "<span class='tooltip' style='background-color: #{color}'>
+												#{split_paragraph[word_index]}
+												<span class='tooltiptext'>#{tooltiptext}</span></span>"
+							words += " "
+						end
+		    	end
+	    		
+	    		words += "#{split_paragraph[word_index]} " if words == ""
 	  			display_text << "#{words} "
 				end
+
 				display_text << "</p>"
 			end
-		end	
 		display_text
 	end
 end
