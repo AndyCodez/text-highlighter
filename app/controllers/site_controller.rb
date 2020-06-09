@@ -23,7 +23,7 @@ class SiteController < ApplicationController
 
   def get_highlights
 	@highlights = [
-					{start: 2, end: 3, comment: "foo"}, 
+					{start: 1, end: 3, comment: "foo"}, 
 					{start: 2, end: 5, comment: "bar"}, 
 					{start: 4, end: 20, comment: "baz"}
 				]  	
