@@ -15,9 +15,9 @@ RSpec.describe TextPresenter, type: :model do
 			highlights = [{start: 2, end: 9, comment: "foo"}, {start: 4, end: 12, comment: "bar"}, 
 										{start: 7, end: 20, comment: "baz"}]
 
-			tf = TextPresenter.new(content: content, highlights: highlights)
+			text_presenter = TextPresenter.new(content: content, highlights: highlights)
 			
-			expect(tf.to_paragraphs.count).to eq(3)
+			expect(text_presenter.to_paragraphs.count).to eq(3)
 		end
 	end
 

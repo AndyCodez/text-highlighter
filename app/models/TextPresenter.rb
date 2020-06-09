@@ -9,7 +9,7 @@ class TextPresenter
 		@content.split(/\s\s/)
 	end
 
-	def highlight
+	def highlighted
 		display_text = "<p>"
 
 		add_colors

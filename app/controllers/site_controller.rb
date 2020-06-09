@@ -2,8 +2,8 @@ class SiteController < ApplicationController
 	before_action :get_content, :get_highlights
 
   def home
-  	@tf = TextPresenter.new(content: @content, highlights: @highlights)
-  	@highlighted = @tf.highlight
+  	@text_presenter = TextPresenter.new(content: @content, highlights: @highlights)
+  	@highlighted_text = @text_presenter.highlighted
   end
 
   private
