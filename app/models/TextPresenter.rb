@@ -5,7 +5,7 @@ class TextPresenter
 		@highlights = highlights
 	end
 
-	def to_paragraphs
+	def paragraphs
 		@content.split(/\s\s/)
 	end
 
@@ -19,8 +19,8 @@ class TextPresenter
 
 			sentence = []
 
-			to_paragraphs.each do |pgraph|
-				split_content = pgraph.split
+			paragraphs.each do |paragraph|
+				split_content = paragraph.split
 				word_indices = split_content.each_with_index.map {|word, position| position}
 
 				word_indices.each do |word_index|
