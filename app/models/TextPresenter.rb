@@ -38,9 +38,7 @@ class TextPresenter
 				end
 				display_text << "</p>"
 			end
-
 		end	
-
 		display_text
 	end
 end
