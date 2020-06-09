@@ -14,9 +14,6 @@ class TextPresenter
 
 		tooltiptext = ""
 
-		count = 0
-		paracount = []
-
 		@highlights.each do |highlight|
 			color = "#" + Random.bytes(3).unpack1('H*')
 
@@ -26,7 +23,6 @@ class TextPresenter
 				split_content = pgraph.split
 				word_indices = split_content.each_with_index.map {|word, position| position}
 
-	  		# check the words in that paragraph against the current highlight
 				word_indices.each do |word_index|
 					words = ""	
 					
@@ -43,9 +39,6 @@ class TextPresenter
 	  			sentence.push(words)
 				end
 			end
-
-			count += 1
-			paracount << "#{count}: #{sentence}"
 
 			sentence.each do |word|
 				display_text << "#{word} "
