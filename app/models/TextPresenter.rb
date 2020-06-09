@@ -17,8 +17,6 @@ class TextPresenter
 		@highlights.each do |highlight|
 			color = "#" + Random.bytes(3).unpack1('H*')
 
-			sentence = []
-
 			paragraphs.each do |paragraph|
 				split_content = paragraph.split
 				word_indices = split_content.each_with_index.map {|word, position| position}
@@ -36,15 +34,11 @@ class TextPresenter
 					end
 	    
 	    		words += split_content[word_index] if words == ""
-	  			sentence.push(words)
+	  			display_text << "#{words} "
 				end
+				display_text << "</p>"
 			end
 
-			sentence.each do |word|
-				display_text << "#{word} "
-			end
-
-			display_text << "</p>"
 		end	
 
 		display_text
