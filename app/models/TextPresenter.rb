@@ -19,8 +19,10 @@ class TextPresenter
 			word_indices = split_paragraph.each_with_index.map {|word, position| position}
 			
 			word_indices.each do |word_index|
-				words = ""	
+				sentence = ""	
 				tooltiptext = ""
+
+				word = split_paragraph[word_index]
 
 				@highlights.each do |highlight|
 
@@ -28,15 +30,15 @@ class TextPresenter
 			
 						tooltiptext += highlight[:comment] 
 
-						words = "<span class='tooltip' style='background-color: #{highlight[:color]}'>
-											#{split_paragraph[word_index]}
+						sentence = "<span class='tooltip' style='background-color: #{highlight[:color]}'>
+											#{word}
 											<span class='tooltiptext'>#{tooltiptext}</span></span>"
-						words += " "
+						sentence += " "
 					end
 	    	end
     		
-    		words += "#{split_paragraph[word_index]} " if words == ""
-  			display_text << "#{words} "
+    		sentence += "#{word} " if sentence == ""
+  			display_text << "#{sentence} "
 			end
 
 			display_text << "</p>"
