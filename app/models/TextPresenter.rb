@@ -12,7 +12,7 @@ class TextPresenter
 	def highlight
 		display_text = "<p>"
 
-		color = "#" + Random.bytes(3).unpack1('H*')
+		add_colors
 
 		paragraphs.each do |paragraph|
 			split_paragraph = paragraph.split
@@ -28,7 +28,7 @@ class TextPresenter
 			
 						tooltiptext += highlight[:comment] 
 
-						words = "<span class='tooltip' style='background-color: #{color}'>
+						words = "<span class='tooltip' style='background-color: #{highlight[:color]}'>
 											#{split_paragraph[word_index]}
 											<span class='tooltiptext'>#{tooltiptext}</span></span>"
 						words += " "
@@ -42,5 +42,12 @@ class TextPresenter
 			display_text << "</p>"
 		end
 		display_text
+	end
+
+	def add_colors
+		@highlights.each do |highlight|
+			color = "#" + Random.bytes(3).unpack1('H*')
+			highlight[:color] = color
+		end		
 	end
 end
