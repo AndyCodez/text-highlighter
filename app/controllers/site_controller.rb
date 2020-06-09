@@ -11,6 +11,8 @@ class SiteController < ApplicationController
   def get_content
 	@content = <<~HTML
 		This is the 1st paragraph. Some additional test text to increase.
+
+		This is the 1st paragraph. Some additional test text to increase. Duplicated.
 		
 		This is the 2nd paragraph and it goes like this etal.
 		
@@ -23,7 +25,7 @@ class SiteController < ApplicationController
 
   def get_highlights
 	@highlights = [
-					{start: 1, end: 3, comment: "foo"}, 
+					{start: 1, end: 4, comment: "foo"}, 
 					{start: 2, end: 5, comment: "bar"}, 
 					{start: 4, end: 20, comment: "baz"}
 				]  	
