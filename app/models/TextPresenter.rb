@@ -48,11 +48,14 @@ class TextPresenter
 
 	def add_colors
 		@highlights.each do |highlight|
-			highlight[:color] = get_color
+			highlight[:color] = Color.get_color
 		end		
 	end
 
-	def get_color
+end
+
+class Color
+	def self.get_color
 		"#" + Random.bytes(3).unpack1('H*')
 	end
 end
