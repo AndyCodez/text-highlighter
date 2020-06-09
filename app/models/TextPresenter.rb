@@ -18,8 +18,8 @@ class TextPresenter
 			color = "#" + Random.bytes(3).unpack1('H*')
 
 			paragraphs.each do |paragraph|
-				split_content = paragraph.split
-				word_indices = split_content.each_with_index.map {|word, position| position}
+				split_paragraph = paragraph.split
+				word_indices = split_paragraph.each_with_index.map {|word, position| position}
 
 				word_indices.each do |word_index|
 					words = ""	
@@ -29,11 +29,11 @@ class TextPresenter
 						tooltiptext += highlight[:comment] unless tooltiptext.include?(highlight[:comment])
 			
 						words += "<span class='tooltip' style='background-color: #{color}'>
-											#{split_content[word_index]}
+											#{split_paragraph[word_index]}
 											<span class='tooltiptext'>#{tooltiptext}</span></span>"
 					end
 	    
-	    		words += split_content[word_index] if words == ""
+	    		words += split_paragraph[word_index] if words == ""
 	  			display_text << "#{words} "
 				end
 				display_text << "</p>"
