@@ -7,20 +7,20 @@ class SiteController < ApplicationController
   end
 
   private
-  # x, x, foobar, foobar, barbaz, barbaz, baz
+
   def get_content
-	@content = <<~HTML
-		This is the 1st paragraph. Some additional test text to increase.
+		@content = <<~HTML
+			This is the 1st paragraph. Some additional test text to increase.
 
-		This is the 1st paragraph. Some additional test text to increase. Duplicated.
-		
-		This is the 2nd paragraph and it goes like this etal.
-		
-		This is the 3rd paragraph. This is the 3rd paragraph. This is the 3rd paragraph.
+			This is the 1st paragraph. Some additional test text to increase. Duplicated.
+			
+			This is the 2nd paragraph and it goes like this etal.
+			
+			This is the 3rd paragraph. This is the 3rd paragraph. This is the 3rd paragraph.
 
-		This is the 4th paragraph and it goes like.
+			This is the 4th paragraph and it goes like.
 
-	HTML
+		HTML
   end
 
   def get_highlights
