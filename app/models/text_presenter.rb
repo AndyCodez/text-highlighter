@@ -1,5 +1,6 @@
+# Displays highlighted paragraphs
 class TextPresenter
-	
+
 	def initialize(content:, highlights:)
 		@content = content
 		@highlights = highlights
@@ -12,44 +13,50 @@ class TextPresenter
 	def highlighted
 		display_text = "<p>"
 
-		tooltip_colors = {}
+		highlight_colors = {}
 
 		paragraphs.each do |paragraph|
 			split_paragraph = paragraph.split
 			word_indices = split_paragraph.each_with_index.map {|word, position| position}
 			
 			word_indices.each do |word_index|
-				sentence = ""	
-				tooltiptext = ""
-
-				word = split_paragraph[word_index]
-
-				@highlights.each do |highlight|
-
-					if word_index.between?(highlight[:start], highlight[:end])
-			
-						tooltiptext += highlight[:comment] 
-						tooltip_colors[tooltiptext] = Color.get_color unless tooltip_colors[tooltiptext].present?
-
-						color = tooltip_colors[tooltiptext]
-
-						sentence = "<span class='tooltip' style='background-color: #{color}'>
-											#{word}
-											<span class='tooltiptext'>#{tooltiptext}</span></span>"
-						sentence += " "
-					end
-    		end
-    		
-    		sentence += "#{word} " if sentence == ""
-  			display_text << "#{sentence} "
+				check_for_highlights(word_index, split_paragraph, highlight_colors, display_text)
 			end
 
 			display_text << "</p>"
 		end
 		display_text
 	end
+
+	def check_for_highlights(word_index, split_paragraph, highlight_colors, display_text)
+		sentence = ""	
+		tooltiptext = ""
+
+		word = split_paragraph[word_index]
+
+		@highlights.each do |highlight|
+			
+			if word_index.between?(highlight[:start], highlight[:end])
+	
+				tooltiptext += highlight[:comment] 
+
+				highlight_colors[tooltiptext] = Color.get_color unless highlight_colors[tooltiptext].present?
+
+				color = highlight_colors[tooltiptext]
+
+				sentence = "<span class='tooltip' style='background-color: #{color}'>
+									#{word}
+									<span class='tooltiptext'>#{tooltiptext}</span></span>"
+				sentence += " "
+			end
+		end
+		
+		sentence += "#{word} " if sentence == ""
+		display_text << "#{sentence} "	
+	end
 end
 
+# Generates the colors
 class Color
 	def self.get_color
 		"#" + Random.bytes(3).unpack1('H*')
