@@ -20,10 +20,11 @@ class TextPresenter
 			word_indices = split_paragraph.each_with_index.map {|word, position| position}
 			
 			word_indices.each do |word_index|
-				check_for_highlights({ word_index: word_index, 
-															split_paragraph: split_paragraph, 
-															highlight_colors: highlight_colors, 
-															display_text: display_text})
+				options = { word_index: word_index, 
+										split_paragraph: split_paragraph, 
+										highlight_colors: highlight_colors, 
+										display_text: display_text}
+				check_for_highlights(options)
 			end
 
 			display_text << "</p>"
