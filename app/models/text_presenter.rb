@@ -20,7 +20,10 @@ class TextPresenter
 			word_indices = split_paragraph.each_with_index.map {|word, position| position}
 			
 			word_indices.each do |word_index|
-				check_for_highlights(word_index, split_paragraph, highlight_colors, display_text)
+				check_for_highlights({ word_index: word_index, 
+															split_paragraph: split_paragraph, 
+															highlight_colors: highlight_colors, 
+															display_text: display_text})
 			end
 
 			display_text << "</p>"
@@ -28,7 +31,12 @@ class TextPresenter
 		display_text
 	end
 
-	def check_for_highlights(word_index, split_paragraph, highlight_colors, display_text)
+	def check_for_highlights(options)
+		word_index = options[:word_index]
+		split_paragraph = options[:split_paragraph]
+		highlight_colors = options[:highlight_colors]
+		display_text = options[:display_text]
+
 		sentence = ""	
 		tooltiptext = ""
 
