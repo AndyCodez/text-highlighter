@@ -12,7 +12,7 @@ class TextPresenter
 	def highlighted
 		display_text = "<p>"
 
-		add_colors
+		tooltip_colors = {}
 
 		paragraphs.each do |paragraph|
 			split_paragraph = paragraph.split
@@ -29,13 +29,16 @@ class TextPresenter
 					if word_index.between?(highlight[:start], highlight[:end])
 			
 						tooltiptext += highlight[:comment] 
+						tooltip_colors[tooltiptext] = Color.get_color unless tooltip_colors[tooltiptext].present?
 
-						sentence = "<span class='tooltip' style='background-color: #{highlight[:color]}'>
+						color = tooltip_colors[tooltiptext]
+
+						sentence = "<span class='tooltip' style='background-color: #{color}'>
 											#{word}
 											<span class='tooltiptext'>#{tooltiptext}</span></span>"
 						sentence += " "
 					end
-	    	end
+    		end
     		
     		sentence += "#{word} " if sentence == ""
   			display_text << "#{sentence} "
@@ -45,13 +48,6 @@ class TextPresenter
 		end
 		display_text
 	end
-
-	def add_colors
-		@highlights.each do |highlight|
-			highlight[:color] = Color.get_color
-		end		
-	end
-
 end
 
 class Color
