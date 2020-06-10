@@ -27,7 +27,8 @@ class SiteController < ApplicationController
 	@highlights = [
 					{start: 1, end: 4, comment: "foo"}, 
 					{start: 2, end: 5, comment: "bar"}, 
-					{start: 4, end: 20, comment: "baz"}
+					{start: 4, end: 20, comment: "baz"},
+					{start: 3, end: 6, comment: "chaz"}
 				]  	
   end
 end

@@ -24,13 +24,17 @@ class TextPresenter
 										split_paragraph: split_paragraph, 
 										highlight_colors: highlight_colors, 
 										display_text: display_text}
+				
 				check_for_highlights(options)
+
 			end
 
 			display_text << "</p>"
 		end
 		display_text
 	end
+
+	private
 
 	def check_for_highlights(options)
 		word_index = options[:word_index]
@@ -60,8 +64,8 @@ class TextPresenter
 			end
 		end
 		
-		sentence += "#{word} " if sentence == ""
-		display_text << "#{sentence} "	
+	 	sentence += "#{word} " if sentence == ""	
+		display_text << "#{sentence} "
 	end
 end
 
